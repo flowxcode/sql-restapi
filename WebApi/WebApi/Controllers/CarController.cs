@@ -21,8 +21,8 @@ namespace WebApi.Controllers
         [Route("[controller]/[action]")]
         public List<Car> GetCars()
         {
-            SqlConnector sql = new SqlConnector();
-            var cars = sql.ReadCarData();
+            var sql = new SqlConnector();
+            var cars = sql.ReadCarData(); // returns a list of cars
             return cars;
         }
 
@@ -32,8 +32,8 @@ namespace WebApi.Controllers
         public Car GetFirstCar()
         {
             SqlConnector sql = new SqlConnector();
-            var car = sql.ReadCarData().OrderBy(x => x.Name).First();
-            return car;
+            Car firstcar = sql.ReadCarData().OrderBy(x => x.Name).First(); // first gives only 1 Car object
+            return firstcar;
         }
 
     }
