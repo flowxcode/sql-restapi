@@ -23,7 +23,7 @@ namespace WebApi.Controllers
         public IEnumerable<WeatherForecast> Get()
         {
             SqlConnector sql = new SqlConnector();
-            sql.ReadCarData();
+            var cars = sql.ReadCarDataAsync();
 
             return Enumerable.Range(1, 5).Select(index => new WeatherForecast
             {
