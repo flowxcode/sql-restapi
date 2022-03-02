@@ -5,7 +5,7 @@ using WebApi.Model;
 
 namespace WebApi
 {
-    public class SqlConnector
+    public class SqlConnector : ISqlConnector
     {
         public List<Car> ReadCarData()
         {
@@ -21,7 +21,6 @@ namespace WebApi
 
                 SqlDataReader reader = command.ExecuteReader();
 
-                // Call Read before accessing data.
                 while (reader.Read())
                 {
                     carList.Add(new Car()
@@ -29,26 +28,11 @@ namespace WebApi
                         ID = reader.GetFieldValue<int>(0),
                         Name = reader.GetFieldValue<string>(1)
                     });
-
-                    /*
-                    var data = (IDataRecord) reader;
-                    System.Diagnostics.Debug.WriteLine(String.Format("{0}, {1}", data[0], data[1]));
-                    */
-
-                    //ReadSingleRow(data);
                 }
-
-                // Call Close when done reading.
                 reader.Close();
             }
 
             return carList;
-        }
-
-        private static void ReadSingleRow(IDataRecord dataRecord)
-        {
-            //Console.WriteLine(String.Format("{0}, {1}", dataRecord[0], dataRecord[1]));
-            System.Diagnostics.Debug.WriteLine(String.Format("{0}, {1}", dataRecord[0], dataRecord[1]));
         }
     }
 }
