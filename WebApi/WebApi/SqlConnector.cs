@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Data;
 using System.Data.SqlClient;
+using WebApi.Model;
 
 namespace WebApi
 {
@@ -14,14 +15,12 @@ namespace WebApi
         //    }
         //}
 
-        public async Task<List<Car>> ReadCarDataAsync()
+        public List<Car> ReadCarData()
         {
             string connectionString = "Data Source=VMWM\\SQLEXPRESS;Initial Catalog=restDB;Integrated Security=SSPI";
             string queryString = "SELECT ID, Name FROM dbo.Cars;";
 
-            IList<Car>? cars = null;
-
-            var carList = new List<Car>();
+            List<Car> carList = new List<Car>();
 
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
@@ -35,8 +34,8 @@ namespace WebApi
                 {
                     carList.Add(new Car()
                     {
-                        ID = await reader.GetFieldValueAsync<int>(0),
-                        Name = await reader.GetFieldValueAsync<string>(1)
+                        ID = reader.GetFieldValue<int>(0),
+                        Name = reader.GetFieldValue<string>(1)
                     });
 
                     /*
@@ -58,16 +57,6 @@ namespace WebApi
         {
             //Console.WriteLine(String.Format("{0}, {1}", dataRecord[0], dataRecord[1]));
             System.Diagnostics.Debug.WriteLine(String.Format("{0}, {1}", dataRecord[0], dataRecord[1]));
-        }
-    }
-
-    public class Car
-    {
-        public int ID { get; set; }
-        public string Name { get; set; }
-        public override string ToString()
-        {
-            return Name;
         }
     }
 }
