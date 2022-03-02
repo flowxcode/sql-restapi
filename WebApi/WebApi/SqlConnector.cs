@@ -7,14 +7,6 @@ namespace WebApi
 {
     public class SqlConnector
     {
-        //public static IEnumerable<T> Select<T>(this IDataReader reader, Func<IDataReader, T> projection)
-        //{
-        //    while (reader.Read())
-        //    {
-        //        yield return projection(reader);
-        //    }
-        //}
-
         public List<Car> ReadCarData()
         {
             string connectionString = "Data Source=VMWM\\SQLEXPRESS;Initial Catalog=restDB;Integrated Security=SSPI";
