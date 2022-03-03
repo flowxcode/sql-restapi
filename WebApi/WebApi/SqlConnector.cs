@@ -7,9 +7,10 @@ namespace WebApi
 {
     public class SqlConnector : ISqlConnector
     {
+        public readonly string connectionString = "Data Source=VMWM\\SQLEXPRESS;Initial Catalog=restDB;Integrated Security=SSPI"; 
+
         public List<Car> ReadCarData()
         {
-            string connectionString = "Data Source=VMWM\\SQLEXPRESS;Initial Catalog=restDB;Integrated Security=SSPI";
             string queryString = "SELECT ID, Name FROM dbo.Cars;";
 
             List<Car> carList = new List<Car>();

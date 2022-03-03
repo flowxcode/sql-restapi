@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 using System.Diagnostics;
 using System.Linq;
 using WebApi.Model;
@@ -33,6 +34,7 @@ namespace WebApi.Controllers
         {
             SqlConnector sql = new SqlConnector();
             Car firstcar = sql.ReadCarData().OrderBy(x => x.Name).First(); // first gives only 1 Car object
+            //_logger.LogDebug("test from getFirstCar method");
             return firstcar;
         }
 
